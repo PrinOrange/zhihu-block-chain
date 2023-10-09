@@ -34,17 +34,17 @@ async function asyncGet_X_Zse_96(param: {
    */
   cookie_d_c0: string | "";
 }) {
-  let { url, cookie_d_c0 } = param;
+  const { url, cookie_d_c0 } = param;
 
   // 生成完整url
-  var info = [
+  const info = [
     Const_Version, // 对应于 x-zse-93, 为常量值
     url,
     cookie_d_c0,
   ].join("+");
-  var step1 = md5(info);
+  const step1 = md5(info);
   // console.log('ipcRenderer step1 => ', step1, JSON.stringify({ url, cookie_d_c0, info }))
-  let signature = await bridgeFunc({
+  const signature = await bridgeFunc({
     method: "encrypt-string",
     paramList: [
       {
@@ -54,7 +54,7 @@ async function asyncGet_X_Zse_96(param: {
   });
   // console.log('signature => ', signature)
   //   var signature = result //zhihuEncrypt(step1)
-  var x_zse_96 = `${Const_Result_Prefix}_${signature}`;
+  const x_zse_96 = `${Const_Result_Prefix}_${signature}`;
   return x_zse_96;
 }
 
